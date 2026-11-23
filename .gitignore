@@ -1,0 +1,10 @@
+*.pyc
+__pycache__/
+.pytest_cache/
+.gradle/
+build/
+local.properties
+*.jks
+artifacts/run/last.pt
+artifacts/run/last.sha256
+artifacts/run/model_fp32.pt

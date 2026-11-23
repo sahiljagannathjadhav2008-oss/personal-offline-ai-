@@ -1,0 +1,24 @@
+params=9,791,680 train_tokens=4,818 val_tokens=468 device=cpu
+{'step': 10, 'loss': 5.8426, 'grad_norm': 6.114, 'lr': 0.0003333333333333333, 'elapsed_s': 11.9}
+{'step': 20, 'loss': 3.5175, 'grad_norm': 2.591, 'lr': 0.0006666666666666666, 'elapsed_s': 21.9}
+{'step': 25, 'loss': 2.9987, 'grad_norm': 2.141, 'lr': 0.0008333333333333334, 'elapsed_s': 26.9, 'val_loss': 2.3261, 'val_ppl': 10.24}
+{'step': 30, 'loss': 2.2704, 'grad_norm': 10.47, 'lr': 0.001, 'elapsed_s': 32.9}
+{'step': 40, 'loss': 1.4222, 'grad_norm': 1.459, 'lr': 0.0009986867346592732, 'elapsed_s': 44.7}
+{'step': 50, 'loss': 1.31, 'grad_norm': 0.894, 'lr': 0.0009941568920607282, 'elapsed_s': 56.0, 'val_loss': 1.1372, 'val_ppl': 3.12}
+{'step': 60, 'loss': 0.9378, 'grad_norm': 0.578, 'lr': 0.0009864268888770539, 'elapsed_s': 68.2}
+{'step': 70, 'loss': 0.9291, 'grad_norm': 0.866, 'lr': 0.0009755524199583211, 'elapsed_s': 79.6}
+{'step': 75, 'loss': 0.8983, 'grad_norm': 0.498, 'lr': 0.0009689596248111282, 'elapsed_s': 85.3, 'val_loss': 1.1357, 'val_ppl': 3.11}
+{'step': 80, 'loss': 0.8668, 'grad_norm': 0.558, 'lr': 0.0009616118361022777, 'elapsed_s': 91.7}
+{'step': 90, 'loss': 0.7471, 'grad_norm': 0.688, 'lr': 0.000944705579535054, 'elapsed_s': 101.8}
+{'step': 100, 'loss': 0.6934, 'grad_norm': 0.723, 'lr': 0.0009249554602226228, 'elapsed_s': 111.9, 'val_loss': 1.2285, 'val_ppl': 3.42}
+{'step': 110, 'loss': 0.6085, 'grad_norm': 0.998, 'lr': 0.0009025037782272031, 'elapsed_s': 122.9}
+{'step': 120, 'loss': 0.4645, 'grad_norm': 0.97, 'lr': 0.0008775122984320509, 'elapsed_s': 133.0}
+{'step': 125, 'loss': 0.4266, 'grad_norm': 1.14, 'lr': 0.000864119724214203, 'elapsed_s': 138.6, 'val_loss': 1.4146, 'val_ppl': 4.11}
+{'step': 130, 'loss': 0.3533, 'grad_norm': 0.731, 'lr': 0.0008501610850217689, 'elapsed_s': 144.8}
+{'step': 140, 'loss': 0.3113, 'grad_norm': 0.9, 'lr': 0.0008206472041157296, 'elapsed_s': 156.1}
+{'step': 150, 'loss': 0.2359, 'grad_norm': 0.764, 'lr': 0.0007891833039021702, 'elapsed_s': 167.3, 'val_loss': 1.6743, 'val_ppl': 5.34}
+{'step': 160, 'loss': 0.1759, 'grad_norm': 0.803, 'lr': 0.000755996082503123, 'elapsed_s': 179.1}
+{'step': 170, 'loss': 0.148, 'grad_norm': 0.743, 'lr': 0.0007213246546092514, 'elapsed_s': 189.8}
+{'step': 175, 'loss': 0.124, 'grad_norm': 0.633, 'lr': 0.0007035100593825633, 'elapsed_s': 195.6, 'val_loss': 1.8319, 'val_ppl': 6.25}
+early stop at step 175: best val_loss=1.1357
+done

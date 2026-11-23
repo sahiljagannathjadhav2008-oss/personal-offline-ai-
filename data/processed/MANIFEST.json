@@ -1,0 +1,33 @@
+{
+  "dataset_version": "e85cd6d170e3",
+  "license": "CC0-1.0",
+  "stats": {
+    "read": 21660,
+    "pii": 0,
+    "quality": 555,
+    "dup": 20602,
+    "kept": 503
+  },
+  "lang_docs": {
+    "en": 143,
+    "dev": 356,
+    "mixed": 4
+  },
+  "sha256": {
+    "val": "3be86776b4e725aa6f5da0e83e802451c3413d2a9b4160ffff77b000dfc7c6ac",
+    "train": "0ce689250897fdf2832d4966e2ddf7e162a87d8342426c2d57354114d92d9a4d"
+  },
+  "train_docs": 453,
+  "val_docs": 50,
+  "source_info": {
+    "license": "CC0-1.0",
+    "author": "Sahil Jadhav / SJ Foundation AI project",
+    "origin": "Original text written for this project; no scraped or third-party data.",
+    "sources": [
+      "grammar-template",
+      "handwritten-paragraph",
+      "identity-lines"
+    ],
+    "records": 21660
+  }
+}
