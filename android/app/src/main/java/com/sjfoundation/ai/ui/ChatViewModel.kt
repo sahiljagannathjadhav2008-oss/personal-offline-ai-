@@ -25,7 +25,9 @@ import com.sjfoundation.ai.engine.SjTokenizer
 import com.sjfoundation.ai.engine.SjwLoader
 import com.sjfoundation.ai.engine.SjwModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -98,7 +100,7 @@ class ChatViewModel(app: Application) : AndroidViewModel(app) {
         engine?.close(); engine = SjEngine(m, cfg.threads, cfg.maxContext)
     }
 
-    fun setLanguage(l: String) { language = l; settings.language = l }
+    fun changeLanguage(l: String) { language = l; settings.language = l }
     fun setProfile(p: String) { profileOverride = p; settings.profileOverride = p; reconfigure() }
     fun setTemp(t: Float) { temperature = t; settings.temperature = t }
 
@@ -140,7 +142,7 @@ class ChatViewModel(app: Application) : AndroidViewModel(app) {
                     if (next == tok.eosId) break
                     out.add(next)
                     val s = tok.decode(out)
-                    withContext(Dispatchers.Main) { messages[idx] = Msg("ai", s); statusLine = "${out.size} tokens" }
+                    withContext(Dispatchers.Main) { if (idx in messages.indices) messages[idx] = Msg("ai", s); statusLine = "${out.size} tokens" }
                     if (out.size >= limit) break
                     logits = eng.step(next)
                 }
@@ -148,13 +150,18 @@ class ChatViewModel(app: Application) : AndroidViewModel(app) {
                 withContext(Dispatchers.Main) {
                     if (out.isNotEmpty() && secs > 0) lastTokPerSec = out.size / secs
                     if (stopReason != null) error = stopReason
-                    if (messages[idx].text.isEmpty()) messages[idx] = Msg("ai", "(no output)")
+                    if (idx in messages.indices && messages[idx].text.isEmpty()) messages[idx] = Msg("ai", "(no output)")
                     statusLine = ""
                 }
+            } catch (e: CancellationException) {
+                // user pressed Stop: keep whatever text was generated so far
             } catch (e: Throwable) {
-                withContext(Dispatchers.Main) { error = "Generation failed: ${e.message}"; if (messages[idx].text.isEmpty()) messages[idx] = Msg("ai", "(error)") }
+                withContext(NonCancellable + Dispatchers.Main) { error = "Generation failed: ${e.message}"; if (idx in messages.indices && messages[idx].text.isEmpty()) messages[idx] = Msg("ai", "(error)") }
             } finally {
-                withContext(Dispatchers.Main) { generating = false; persist() }
+                withContext(NonCancellable + Dispatchers.Main) {
+                    if (idx in messages.indices && messages[idx].text.isEmpty()) messages[idx] = Msg("ai", "(stopped)")
+                    statusLine = ""; generating = false; persist()
+                }
             }
         }
     }
