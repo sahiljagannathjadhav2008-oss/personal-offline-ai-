@@ -55,6 +55,8 @@ jobs:
           echo "SJ_KEYSTORE_PASSWORD=sjci1234" >> "$GITHUB_ENV"
           echo "SJ_KEY_ALIAS=sjci" >> "$GITHUB_ENV"
           echo "SJ_KEY_PASSWORD=sjci1234" >> "$GITHUB_ENV"
+      - name: Make Gradle wrapper executable (permissions are lost on browser/phone uploads)
+        run: chmod +x android/gradlew
       - name: Unit tests
         working-directory: android
         run: ./gradlew --no-daemon testDebugUnitTest
@@ -97,4 +99,4 @@ jobs:
         with:
           api-level: 30
           arch: x86_64
-          script: cd android && ./gradlew --no-daemon connectedDebugAndroidTest
+          script: cd android && chmod +x gradlew && ./gradlew --no-daemon connectedDebugAndroidTest
